@@ -8,8 +8,8 @@ Demo de Kubernetes API para la Hora de Kubernetes, esta demo busca demostrar com
 - [Kubernetes Supports OpenAPI](https://kubernetes.io/blog/2016/12/kubernetes-supports-openapi/)
 - [Kubernetes API Conventions](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md)
 - [Kubernetes API Overview](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#-strong-api-overview-strong-)
-- https://www.youtube.com/watch?v=dajYTUoCEGw
-- https://www.youtube.com/watch?v=QtXHkzLtqZE
+- [How to Get Comfortable with Kubernetes API (Youtube)](https://www.youtube.com/watch?v=dajYTUoCEGw)
+- [A Basic Kubernetes Debugging Kit: curl, jq, openssl, and Other Best Friends - Joe Thompson (Youtube)](https://www.youtube.com/watch?v=QtXHkzLtqZE)
 
 
 ## Conectarse al API

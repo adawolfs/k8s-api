@@ -11,20 +11,8 @@ Demo de Kubernetes API para la Hora de Kubernetes, esta demo busca demostrar com
 - [How to Get Comfortable with Kubernetes API (Youtube)](https://www.youtube.com/watch?v=dajYTUoCEGw)
 - [A Basic Kubernetes Debugging Kit: curl, jq, openssl, and Other Best Friends - Joe Thompson (Youtube)](https://www.youtube.com/watch?v=QtXHkzLtqZE)
 
-
-## Conectarse al API
-Para esto utilizaremos un comando de kubernetes que nos permite crear un proxy entre un pueto local y el Kubernetes API
-
-```
-kubectl proxy --port=8080
-```
-
-Luego podremos hacer uso de un curl 
-
-```
-curl http://localhost:8080/api/
-```
-
+## Video
+[Haz click aquí](https://youtu.be/H6K-0n0Ldr0)
 
 ## Presentación
 

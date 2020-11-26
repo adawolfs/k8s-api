@@ -1,0 +1,99 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "labels": {
+                    "app": "wordpress"
+                },
+                "name": "wordpress",
+                "namespace": "default"
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "nodePort": 30081,
+                        "port": 80
+                    }
+                ],
+                "selector": {
+                    "app": "wordpress",
+                    "tier": "frontend"
+                },
+                "type": "NodePort"
+            }
+        },
+        {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "metadata": {
+                "labels": {
+                    "app": "wordpress"
+                },
+                "name": "wordpress",
+                "namespace": "default"
+            },
+            "spec": {
+                "selector": {
+                    "matchLabels": {
+                        "app": "wordpress",
+                        "tier": "frontend"
+                    }
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "wordpress",
+                            "tier": "frontend"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "WORDPRESS_DB_HOST",
+                                        "value": "wordpress-mysql"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_DB_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "password",
+                                                "name": "mysql-pass"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "WORDPRESS_DB_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "user",
+                                                "name": "mysql-pass"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "wordpress:4.8-apache",
+                                "name": "wordpress",
+                                "ports": [
+                                    {
+                                        "containerPort": 80,
+                                        "name": "wordpress"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}

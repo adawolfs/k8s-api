@@ -1,0 +1,76 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "labels": {
+      "app": "wordpress"
+    },
+    "name": "wordpress-mysql"
+  },
+  "spec": {
+    "selector": {
+      "matchLabels": {
+        "app": "wordpress",
+        "tier": "mysql"
+      }
+    },
+    "strategy": {
+      "type": "Recreate"
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "wordpress",
+          "tier": "mysql"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "MYSQL_ROOT_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "root_password",
+                    "name": "mysql-pass"
+                  }
+                }
+              },
+              {
+                "name": "MYSQL_USER",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "user",
+                    "name": "mysql-pass"
+                  }
+                }
+              },
+              {
+                "name": "MYSQL_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "password",
+                    "name": "mysql-pass"
+                  }
+                }
+              },
+              {
+                "name": "MYSQL_DATABASE",
+                "value": "wordpress"
+              }
+            ],
+            "image": "mariadb:5.5",
+            "name": "mysql",
+            "ports": [
+              {
+                "containerPort": 3306,
+                "name": "mysql"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
